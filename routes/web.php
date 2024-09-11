@@ -23,7 +23,7 @@ require __DIR__.'/auth.php';
 Route::get('/inventory', [InventoryController::class, 'index'])->name('admin.inventory.index');
 Route::get('/inventory/create', [InventoryController::class, 'create'])->name('admin.inventory.create');
 Route::post('/inventory', [InventoryController::class, 'store'])->name('admin.inventory.store');
-// Route::get('/admin/breed/{id}/edit', [BreedController::class, 'edit'])->name('admin.breed.edit');
+Route::get('/admin/inventory/{id}/edit', [InventoryController::class, 'edit'])->name('admin.inventory.edit');
 // Route::put('/admin/breed/{breed}', [BreedController::class, 'update'])->name('admin.breed.update');
 Route::delete('/admin/inventory/{inventory}', [InventoryController::class, 'destroy'])->name('admin.inventory.destroy');
 

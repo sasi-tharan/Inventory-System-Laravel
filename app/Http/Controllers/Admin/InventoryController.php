@@ -26,7 +26,7 @@ class InventoryController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string',
             'description' => 'required',
-            'quantity' => 'required|integer', 
+            'quantity' => 'required|integer',
             'price' => 'required|numeric',
             'status' => 'required|in:active,inactive',
         ]);
@@ -42,9 +42,18 @@ class InventoryController extends Controller
         // Save the product to the database
         $product->save();
 
-        // Redirect back to the inventory index with a success message
-        return redirect()->route('admin.inventory.index')->with('message', 'Inventory Added Successfully');
+        // Set the flash message to the session
+        session()->flash('success', 'Inventory created successfully');
+
+        // Redirect back to the inventory index
+        return redirect()->route('admin.inventory.index');
     }
+
+    public function edit($id)
+    {
+        
+    }
+
 
 
 

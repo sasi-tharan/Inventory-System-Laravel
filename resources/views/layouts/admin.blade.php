@@ -38,9 +38,11 @@
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"> --}}
     <!-- Include Bootstrap JS -->
     <!-- Include Bootstrap JS -->
-   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>-->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>-->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+        integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="{{ asset('vendor/sweetalert2/dist/sweetalert2.min.css') }}">
     <script src="{{ asset('vendor/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
 
@@ -52,27 +54,20 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.css" />
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   
+
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-     <script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.dataTables.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.print.min.js"></script>
-    
+
     <!-- JavaScript -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
-
-
-    @livewireStyles
-
-    <!-- Scripts -->
-   
-
 </head>
 
 <body>
@@ -113,27 +108,26 @@
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <!-- Add this in your HTML -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
-    
-    
-   
-    
+
+
+
+
     <script src="/js/script.js"></script>
-    
-    
     <script>
-        $(document).ready(function(){
-            $('#notificationDropdown').click(function(){
-                var parent = $(this).parents('.dropdown').first();
-                $(parent).find('.dropdown-menu').toggle();
-            })
+        $(document).ready(function() {
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    alertify.error("{{ $error }}");
+                @endforeach
+            @elseif (session('success'))
+                alertify.success("{{ session('success') }}");
+            @elseif (session('failure'))
+                alertify.error("{{ session('failure') }}");
+            @endif
         });
     </script>
-
     @yield('alertify-script')
     @yield('scripts')
-    @livewireScripts
-
-
     @stack('script')
 </body>
 

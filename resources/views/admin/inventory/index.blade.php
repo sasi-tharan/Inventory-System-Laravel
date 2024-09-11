@@ -4,11 +4,18 @@
     <div class="content-wrapper" style="padding: 20px;">
         <div class="row">
             <div class="col-md-12">
-                @if (session('message'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('message') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                @if (session('success'))
+                @section('alertify-script')
+                    <script>
+                        alertify.success("{{ session('success') }}");
+                    </script>
+                @show
+            @elseif (session('failure'))
+                @section('alertify-script')
+                    <script>
+                        alertify.error("{{ session('failure') }}");
+                    </script>
+                @show
             @endif
                 <div class="card">
 
